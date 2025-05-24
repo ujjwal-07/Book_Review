@@ -8,12 +8,15 @@ const router = express.Router();
 
 app.use(express.urlencoded({ extended: true }));
 
-router.post("/addbook",auth, addBook);
-router.get("/getbooks",auth,getBooks);
-router.get("/getbook/:id",auth,getBookById);
-router.post("/addReview",auth, addReview);
-router.delete("/delteReview/:id",auth,deleteReview)
-router.put("/updateReview/:id",auth,updateReview);
-router.get("/searchByTitle/",auth,searchByTitle);
-router.get("/searchByAuthor",auth,searchByAuthor) // Assuming you want to update the review with the same endpoint
+router.post("/",auth, addBook);
+router.get("/",auth,getBooks);
+
+router.get("/searchByTitle",auth,searchByTitle);
+router.get("/searchByAuthor",auth,searchByAuthor)
+
+router.get("/:id",auth,getBookById);
+router.post("/:id/review",auth, addReview);
+router.delete("/reviews/:id",auth,deleteReview)
+router.put("/reviews/:id",auth,updateReview);
+
 module.exports = router;

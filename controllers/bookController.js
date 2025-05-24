@@ -7,12 +7,10 @@ const { parse } = require('dotenv');
 
 exports.addBook = async (req, res) => {
     const { title, author,description, genre, publishedYear } = req.body;
-    // Validate the request body    
     if (!title || !author || !description || !genre || !publishedYear) {
         return res.status(400).json({ message: 'All fields are required' });
     }
     console.log(req.body, "this is body for book");
-    // Create a new book object
     const newBook = new Book({
         title,
         author,
@@ -90,7 +88,8 @@ exports.getBookById = async (req, res) => {
 }
 
 exports.addReview = async (req, res) => {
-    const { bookId, rating, comment } = req.body;
+    const { rating, comment } = req.body;
+    const bookId = req.params.id;
     const userId = req.user.userId; 
     console.log(req.user.userId)
     console.log(req.body, "this is body for review");
@@ -169,6 +168,7 @@ exports.updateReview = async (req, res) => {
 }
 
 exports.searchByTitle = async (req, res) => {
+    console.log(req.query, "this is query for title");
     const { title } = req.query;
     if (!title) {
         return res.status(400).json({ message: 'Title query parameter is required' });

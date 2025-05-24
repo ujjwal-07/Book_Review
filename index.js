@@ -14,6 +14,7 @@ app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/book", loginRoutes,bookRoutes);
+app.use("/auth", loginRoutes);
+app.use("/books", bookRoutes);
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
