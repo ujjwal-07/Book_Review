@@ -175,7 +175,7 @@ exports.searchByTitle = async (req, res) => {
     }
 
     try {
-        const books = await Book.find({ title: new RegExp(title, 'i') }); // 'i' for case-insensitive search
+        const books = await Book.find({ title: new RegExp(title, 'i') });
         if (books.length === 0) {
             return res.status(404).json({ message: 'No books found with that title' });
         }
@@ -194,7 +194,7 @@ exports.searchByAuthor = async (req, res) => {
     }
 
     try {
-        const books = await Book.find({ author: new RegExp(author, 'i') }); // 'i' for case-insensitive search
+        const books = await Book.find({ author: new RegExp(author, 'i') }); 
         if (books.length === 0) {
             return res.status(404).json({ message: 'No books found with that title' });
         }
